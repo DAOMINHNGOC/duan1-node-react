@@ -4,7 +4,9 @@ import Product from "../models/products";
 
 export const getAll = async (req, res) => {
   try {
-    const categories = await Category.find({});
+    const categories = await Category.find({}).populate({
+      path: "products",
+    });
     if (!categories) {
       return res.status(400).json({
         message: "không tìm thấy danh mục",
@@ -23,7 +25,9 @@ export const getAll = async (req, res) => {
 
 export const get = async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id);
+    const category = await Category.findById(req.params.id).populate({
+      path: "products",
+    });
     if (!category) {
       return res.status(400).json({
         message: "không tìm thấy danh mục",
@@ -32,7 +36,7 @@ export const get = async (req, res) => {
     const products = await Product.find({ categoryId: req.params.id });
     return res.json({
       message: "Lấy danh mục thành công",
-      categories: { ...category.toObject(), products },
+      category: { ...category.toObject(), products },
     });
   } catch (error) {
     return res.status(400).json({

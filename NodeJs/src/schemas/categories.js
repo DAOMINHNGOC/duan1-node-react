@@ -4,7 +4,8 @@ const categorySchema = joi.object({
   _id: joi.string(),
   name: joi.string().required(),
   image: joi.string().required(),
-  products: joi.array(),
+  categoryId: joi.string().required(),
+
   __v: joi.number(),
   createdAt: joi.date(),
   updatedAt: joi.date(),
