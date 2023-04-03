@@ -18,6 +18,7 @@ const ListCategory = ({ categories, onRemove }: Props) => {
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Active</th>
                         </tr>
                     </thead>
@@ -27,6 +28,7 @@ const ListCategory = ({ categories, onRemove }: Props) => {
                                 <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{cate.name}</td>
+                                    <td><img src={cate.image} alt="" width={100} /></td>
                                     <td>
                                         <button className='btn btn-danger' onClick={() => onHandleRemove(cate._id)}><i className="fa-solid fa-trash"></i></button>
                                         <a className='btn btn-warning' href={"/admin/categories/" + cate._id + "/update"}><i className="fa-solid fa-pen-to-square"></i></a>
